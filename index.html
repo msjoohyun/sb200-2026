@@ -32,6 +32,7 @@ select{appearance:none;background:var(--wh) url("data:image/svg+xml,%3Csvg xmlns
 .wb.on{display:block}
 .cc{font-size:11px;color:var(--mu);text-align:right;margin-top:3px;font-family:monospace}
 .cc.ov{color:var(--er);font-weight:600}.cc.nr{color:var(--wa);font-weight:600}
+.url-note{font-size:12px;color:#6B7280;background:#F3F4F6;border-left:3px solid #D1D5DB;padding:7px 11px;border-radius:4px;margin-top:7px;line-height:1.5}
 .hid{display:none}
 .sa{text-align:center;padding:34px 20px}
 .btn-s{background:var(--b);color:#fff;border:none;padding:14px 42px;font-size:15px;font-weight:700;border-radius:50px;cursor:pointer;box-shadow:0 4px 12px rgba(0,85,255,.3);transition:all .3s}
@@ -99,18 +100,19 @@ select{appearance:none;background:var(--wh) url("data:image/svg+xml,%3Csvg xmlns
       <div class="fg"><label>POC Last Name<span class="r">*</span></label><input type="text" id="pocLast" required></div>
       <div class="fg"><label>POC Phone Number<span class="r">*</span></label><input type="text" id="pocPhone" required placeholder="+82 10-1234-5678"></div>
       <div class="fg"><label>POC Email Address<span class="r">*</span></label><input type="email" id="pocEmail" required></div>
-      <div class="fg"><label>CC Email Address</label><input type="email" id="ccEmail"><div class="ht">참조 이메일 (선택사항)</div></div>
+      <div class="fg"><label>CC Email Address</label><input type="email" id="ccEmail"><div class="ht">💡 참조 이메일 (선택사항)</div></div>
     </div>
 
     <!-- S2 -->
     <div class="sec">
       <div class="sh">Section 2. Company Information</div>
       <div class="fg"><label>Startup Company Name<span class="r">*</span></label><input type="text" id="companyName" required></div>
-      <div class="fg"><label>Website URL<span class="r">*</span></label><input type="url" id="website" required placeholder="https://"></div>
-      <div class="fg"><label>Pitchbook / Crunchbase URL</label><input type="url" id="pitchbookUrl" placeholder="https://"></div>
+      <div class="fg"><label>Website URL<span class="r">*</span></label><div class="url-note">ℹ️ 해당 질문은 본 시뮬레이션 평가 항목에는 포함되지 않으며, 실제 2026년 Startup Battlefield 신청서에서는 URL을 제출하는 방식으로 진행되니 참고해 주시기 바랍니다.</div></div>
+      <div class="fg"><label>Pitchbook / Crunchbase URL</label><div class="url-note">ℹ️ 해당 질문은 본 시뮬레이션 평가 항목에는 포함되지 않으며, 실제 2026년 Startup Battlefield 신청서에서는 URL을 제출하는 방식으로 진행되니 참고해 주시기 바랍니다.</div></div>
       <div class="fg"><label>Date of Incorporation<span class="r">*</span></label><input type="date" id="incorporation" required></div>
       <div class="fg"><label>HQ Geographic Region<span class="r">*</span></label>
-        <select id="hqRegion" required><option value="">선택</option><option>Asia</option><option>North America</option><option>Europe</option><option>South America</option><option>Africa</option><option>Oceania</option></select></div>
+        <select id="hqRegion" required><option value="">선택</option><option>Asia</option><option>North America</option><option>Europe</option><option>South America</option><option>Africa</option><option>Oceania</option></select>
+        <div class="ht">💡 팀원 대다수가 위치한 지역을 선택해주세요.</div></div>
       <div class="fg"><label>HQ Country<span class="r">*</span></label><input type="text" id="country" required></div>
       <div class="fg"><label>HQ City<span class="r">*</span></label><input type="text" id="city" required></div>
     </div>
@@ -119,37 +121,41 @@ select{appearance:none;background:var(--wh) url("data:image/svg+xml,%3Csvg xmlns
     <div class="sec">
       <div class="sh">Section 3. Product Details</div>
       <div class="fg"><label>What developmental stage best aligns with your product?<span class="r">*</span></label>
-        <select id="stage" required><option value="">선택</option><option value="Idea">Idea Stage</option><option value="Pre-Launch">Pre-Launch (MVP in development)</option><option value="Post-Launch">Post-Launch (product is live)</option><option value="Growth">Growth Stage (scaling)</option></select></div>
+        <select id="stage" required><option value="">선택</option><option value="Idea">Idea Stage (no product yet)</option><option value="Pre-Launch">Pre-Launch (at least an MVP)</option><option value="Post-Launch">Post-Launch (Product in market)</option><option value="Growth">Growth Stage (scaling beyond initial market)</option></select></div>
       <div class="fg"><label>Company Value Proposition Statement<span class="r">*</span></label>
         <textarea id="vp" required maxlength="200"></textarea>
         <div class="cc" id="vpCnt">0 / 200 characters</div>
-        <div class="ht">최대 200자. 예: "We help (X) do (Y) by doing (Z)"</div></div>
+        <div class="ht">💡 최대 200자. 예: "We help (X) do (Y) by doing (Z)"</div></div>
       <div class="fg"><label>What core problem are you addressing?<span class="r">*</span></label><textarea id="problem" required></textarea></div>
       <div class="fg"><label>What is your solution to this core problem?<span class="r">*</span></label><textarea id="solution" required></textarea></div>
-      <div class="fg"><label>How is your solution unique and protectable?<span class="r">*</span></label><textarea id="diff" required></textarea><div class="ht">차별점과 보호 가능한 경쟁우위(moat)를 설명해주세요.</div></div>
+      <div class="fg"><label>How is your solution unique and protectable?<span class="r">*</span></label><textarea id="diff" required></textarea><div class="ht">💡 차별점과 보호 가능한 경쟁우위(moat)를 설명해주세요.</div></div>
       <div class="fg"><label>Who is your ideal customer?<span class="r">*</span></label><textarea id="customer" required></textarea></div>
       <div class="fg"><label>What is the primary use case for your product?<span class="r">*</span></label><textarea id="useCase" required></textarea></div>
       <div class="fg"><label>Do you hold a patent to your IP?<span class="r">*</span></label>
         <select id="patent" required><option value="">선택</option><option>Yes</option><option>No</option><option value="Patent pending">Patent pending</option></select></div>
-      <div class="fg hid" id="patentLinkG"><label>Patent / compliance certification URL<span class="r">*</span></label><input type="url" id="patentLink" placeholder="https://"></div>
-      <div class="fg"><label>Tell us about your go-to-market. How do you distribute your product?<span class="r">*</span></label><textarea id="gtm" required></textarea><div class="ht">고객이 귀사 제품을 어디서/어떻게 발견하는지 설명해주세요.</div></div>
+      <div class="fg hid" id="patentLinkG"><label>Patent / compliance certification URL<span class="r">*</span></label><div class="url-note">ℹ️ 해당 질문은 본 시뮬레이션 평가 항목에는 포함되지 않으며, 실제 2026년 Startup Battlefield 신청서에서는 URL을 제출하는 방식으로 진행되니 참고해 주시기 바랍니다.</div></div>
+      <div class="fg"><label>Tell us about your go-to-market. How do you distribute your product?<span class="r">*</span></label><textarea id="gtm" required></textarea><div class="ht">💡 고객이 귀사 제품을 어디서/어떻게 발견하는지 설명해주세요.</div></div>
       <div class="fg"><label>Will you be potentially launching a new product at Disrupt?<span class="r">*</span></label>
         <select id="newProduct" required><option value="">선택</option><option>Yes</option><option>No</option></select></div>
-      <div class="fg hid" id="newProductG"><label>What will you be launching at Disrupt?<span class="r">*</span></label><textarea id="newProductDesc"></textarea></div>
+      <div class="fg hid" id="newProductG"><label>What will you be launching at Disrupt?<span class="r">*</span></label><textarea id="newProductDesc"></textarea><div class="ht">💡 Disrupt에서 발표할 신제품 또는 새로운 기능을 설명해주세요.</div></div>
       <div class="fg"><label>What technology is your product primarily based on?<span class="r">*</span></label>
-        <select id="technology" required><option value="">선택</option><option value="AI & ML">Artificial Intelligence (AI) & Machine Learning (ML)</option><option>Blockchain</option><option value="IoT">Internet of Things (IoT)</option><option value="SaaS">Software as a Service (SaaS)</option><option>Hardware</option><option>Biotech</option><option>Other</option></select></div>
-      <div class="fg hid" id="aiG"><label>What proprietary data, models or techniques separate your AI approach from others in the market?</label><textarea id="aiDetails"></textarea></div>
+        <select id="technology" required><option value="">선택</option><option>3D Printing & Additive Manufacturing</option><option>5G & Telecommunications</option><option value="AI & ML">Artificial Intelligence (AI) & Machine Learning (ML)</option><option>Augmented Reality (AR) & Virtual Reality (VR)</option><option>Big Data & Analytics</option><option>Biotechnology & Life Sciences</option><option>Blockchain & Web3</option><option>Clean Energy Technologies</option><option>Cloud Computing (e.g., SaaS, IaaS, PaaS)</option><option>Cybersecurity</option><option>Edge Computing</option><option>Internet of Things (IoT)</option><option>Nanotechnology</option><option>Other</option><option>Quantum Computing</option><option>Robotics & Automation</option></select>
+        <div class="ht">💡 귀사 제품과 가장 잘 맞는 기술을 선택해주세요.</div></div>
+      <div class="fg hid" id="aiG"><label>What proprietary data, models or techniques separate your AI approach from others in the market?</label><textarea id="aiDetails"></textarea><div class="ht">💡 독자 데이터셋, 파인튜닝 방식, 독자 모델 아키텍처 등 경쟁사와 차별화되는 AI 기술 요소를 설명해주세요.</div></div>
     </div>
 
     <!-- S4 -->
     <div class="sec">
       <div class="sh">Section 4. Product Demo</div>
-      <div class="fg"><label>Product Video Demo URL (Max 2 Minutes)<span class="r">*</span></label>
-        <select id="demoUrl" required><option value="">선택</option><option value="Yes">Yes — I have a demo video</option><option value="No">No — I don't have a demo video</option></select>
-        <div class="tip">💡 2분 이내 제품 작동 영상. 스크린 녹화 가능. 비밀번호 없이 누구나 접근 가능하도록 설정.<br><strong>⚠️ 본 시뮬레이터는 영상 보유 여부만 평가에 반영합니다.</strong></div></div>
-      <div class="fg"><label>Founder Intro Video URL (Max 1 Minute)<span class="r">*</span></label>
-        <select id="founderUrl" required><option value="">선택</option><option value="Yes">Yes — I have a founder intro video</option><option value="No">No — I don't have a founder intro video</option></select>
-        <div class="tip">💡 1분 이내 창업자 소개 영상. Demo 영상과 별도 제작. 창업자 본인·팀·제품 독창성·임팩트 소개.<br><strong>⚠️ 본 시뮬레이터는 영상 보유 여부만 평가에 반영합니다.</strong></div></div>
+      <div class="url-note" style="margin-bottom:16px">ℹ️ 해당 섹션의 질문들은 본 시뮬레이션 평가 항목에는 포함되지 않으며, 실제 2026년 Startup Battlefield 신청서에서는 URL을 제출하는 방식으로 진행되니 참고해 주시기 바랍니다.</div>
+      <div class="fg">
+        <label>Product Video Demo URL (Max 2 Minutes)<span class="r">*</span></label>
+        <div class="tip">💡 2분 이내 제품 작동 영상. 스크린 녹화 가능. 마케팅용 고품질 영상 불필요 — 제품이 실제로 작동함을 증명하는 것이 목적. 비밀번호 없이 누구나 접근 가능하도록 설정.</div>
+      </div>
+      <div class="fg">
+        <label>Founder Intro Video URL (Max 1 Minute)<span class="r">*</span></label>
+        <div class="tip">💡 1분 이내 창업자 소개 영상. Demo 영상과 별도 제작. 창업자 본인·팀·제품 독창성·임팩트 소개. 스크린 녹화 가능.</div>
+      </div>
     </div>
 
     <!-- S5 -->
@@ -157,20 +163,20 @@ select{appearance:none;background:var(--wh) url("data:image/svg+xml,%3Csvg xmlns
       <div class="sh">Section 5. Market Details</div>
       <div class="fg"><label>What is your Total Addressable Market (TAM), and what assumptions or data points did you use to calculate it?<span class="r">*</span></label>
         <input type="text" id="tam" required placeholder="예: $500M">
-        <div class="ht">USD 단위로 입력해주세요.</div></div>
+        <div class="ht">💡 USD 단위로 입력해주세요.</div></div>
       <div class="fg"><label>Please provide a written explanation of how you calculate your TAM<span class="r">*</span></label>
         <textarea id="tamLogic" required></textarea>
         <div class="wb" id="tamWarn">💡 TAM 계산 근거가 구체적이지 않습니다. Bottom-up 방식(가정 × 계산식)을 포함해주세요.</div>
-        <div class="ht">예: "5M users × $100/year = $500M" — 가정과 계산 논리를 명확히 서술해주세요.</div></div>
-      <div class="fg"><label>How is your solution unique and protectable?<span class="r">*</span></label>
-        <textarea id="uniqueness" required></textarea>
-        <div class="ht">독자 기술, 특허, 데이터 해자 등 경쟁사 대비 차별점을 서술해주세요.</div></div>
+        <div class="ht">💡 예: "5M users × $100/year = $500M" — 가정과 계산 논리를 명확히 서술해주세요.</div></div>
       <div class="fg"><label>Who are your competitors?<span class="r">*</span></label>
         <textarea id="competitors" required></textarea>
         <div class="wb" id="compWarn">🚨 TC 공식 가이드: "경쟁자 없음" 답변 시 자동으로 낮은 우선순위로 분류됩니다.</div>
-        <div class="ht">글로벌 경쟁사를 포함하여 쉼표로 구분해 나열해주세요. 예: Google, Microsoft, ...</div></div>
+        <div class="ht">💡 글로벌 경쟁사를 포함하여 쉼표로 구분해 나열해주세요. 예: Google, Microsoft, ...</div></div>
+      <div class="fg"><label>How is your solution unique and protectable?<span class="r">*</span></label>
+        <textarea id="uniqueness" required></textarea>
+        <div class="ht">💡 독자 기술, 특허, 데이터 해자 등 경쟁사 대비 차별점을 서술해주세요.</div></div>
       <div class="fg"><label>What primary industry does your product align with?<span class="r">*</span></label>
-        <select id="industry" required><option value="">선택</option><option value="AI/ML">AI & Machine Learning</option><option value="Enterprise SaaS">Enterprise SaaS</option><option value="Consumer">Consumer Tech</option><option value="Fintech">Fintech</option><option value="Healthcare">Healthcare</option><option value="Climate">Climate Tech</option><option value="Security">Cybersecurity</option><option value="Transportation">Transportation</option><option value="Other">Other</option></select></div>
+        <select id="industry" required><option value="">선택</option><option>Aerospace, Spacetech & Defense</option><option>Agriculture & FoodTech</option><option>Automotive & Transportation</option><option>Biotech & Pharmaceuticals</option><option>Consumer Tech</option><option>Cybersecurity</option><option>E-commerce & Retail</option><option>Education</option><option>Energy & CleanTech</option><option>Enterprise Tech</option><option>Entertainment & Media</option><option>Finance, Fintech & Banking</option><option>Government & Public Sector</option><option>Health & Wellness Tech</option><option>Human Resources & Recruitment</option><option>Insurance Tech</option><option>Legal & Regulatory Tech</option><option>Logistics & Supply Chain</option><option>Manufacturing & Industrial Tech</option><option>Marketing & Advertising</option><option>Other</option><option>Real Estate & PropTech</option><option>Smart Cities & Infrastructure Tech</option><option>Telecommunications</option><option>Tourism & Hospitality</option></select></div>
     </div>
 
     <!-- S6 -->
@@ -178,20 +184,20 @@ select{appearance:none;background:var(--wh) url("data:image/svg+xml,%3Csvg xmlns
       <div class="sh">Section 6. Traction</div>
       <div class="fg"><label>What is the main KPI (number value) you track and how has it grown in the last few months?<span class="r">*</span></label>
         <textarea id="kpi" required></textarea>
-        <div class="ht">예: "MRR $50K → $80K (60% growth in 3 months)"</div></div>
+        <div class="ht">💡 예: "MRR $50K → $80K (60% growth in 3 months)"</div></div>
       <div class="fg"><label>Please describe your traction so far<span class="r">*</span></label>
         <textarea id="traction" required></textarea>
-        <div class="ht">Beta testing, PoC, 유료 고객, 파트너십 등 구체적으로 서술해주세요.</div></div>
+        <div class="ht">💡 Beta testing, PoC, 유료 고객, 파트너십 등 구체적으로 서술해주세요.</div></div>
       <div class="fg"><label>Please list some of your customers, if applicable<span class="r">*</span></label>
         <textarea id="customers" required></textarea>
         <div class="wb" id="custWarn">💡 글로벌 고객사를 포함하면 평가에 유리합니다.</div>
-        <div class="ht">없다면 "Pre-revenue" 또는 "Beta users: N명"으로 작성</div></div>
+        <div class="ht">💡 없다면 "Pre-revenue" 또는 "Beta users: N명"으로 작성</div></div>
       <div class="fg"><label>Summarize any press/media coverage your startup has received<span class="r">*</span></label>
         <textarea id="press" required></textarea>
-        <div class="ht">없다면 "N/A"로 작성. SB200 참가팀은 언론 노출이 많지 않아도 됩니다.</div></div>
+        <div class="ht">💡 SB200 참가팀은 대체로 알려지지 않은 초기 단계이므로 언론 노출이 많지 않아도 됩니다. 데모데이 결과 기사, 베타 제품 단신, 지역 언론 보도 정도는 허용됩니다. 없다면 N/A로 작성해주세요.</div></div>
       <div class="fg"><label>What is newsworthy about your product, team and/or founding story?<span class="r">*</span></label>
         <textarea id="newsworthy" required></textarea>
-        <div class="ht">TechCrunch 저널리스트가 기사로 쓸 수 있는 스토리를 설명해주세요. 지금 왜 이 제품이 중요한가?</div></div>
+        <div class="ht">💡 TechCrunch 저널리스트가 기사로 쓸 수 있는 스토리를 설명해주세요. 지금 왜 이 제품이 중요한가?</div></div>
     </div>
 
     <!-- S7 -->
@@ -199,29 +205,30 @@ select{appearance:none;background:var(--wh) url("data:image/svg+xml,%3Csvg xmlns
       <div class="sh">Section 7. Financial Information</div>
       <div class="fg"><label>Please explain your business model.<span class="r">*</span></label>
         <textarea id="bizModel" required></textarea>
-        <div class="ht">수익화 방식과 단위 경제성을 명확히 설명해주세요.</div></div>
+        <div class="ht">💡 수익화 방식과 단위 경제성을 명확히 설명해주세요.</div></div>
       <div class="fg"><label>Do you have any revenue?<span class="r">*</span></label>
-        <select id="hasRevenue" required><option value="">선택</option><option>Yes</option><option>No</option></select></div>
+        <select id="hasRevenue" required><option value="">선택</option><option>Pre-revenue</option><option value="Early revenue">Early revenue (one off, ex: consulting project, POC, pilots)</option><option value="Less than $100k ARR">Less than $100k ARR</option><option value="$100K-$500K ARR">$100K- $500K ARR</option><option value="$501K-$1M ARR">$501K - $1M ARR</option><option value="$1.1M-$5M ARR">$1.1M- $5M ARR</option><option value="$5M+ ARR">$5M + ARR</option></select></div>
       <div class="fg"><label>Have you raised any capital?<span class="r">*</span></label>
-        <select id="raisedCapital" required><option value="">선택</option><option>Yes</option><option>No</option></select></div>
-      <div class="fg hid" id="fundDateG"><label>Date of most recent funding close<span class="r">*</span></label><input type="date" id="fundDate"></div>
-      <div class="fg hid" id="fundStageG"><label>How would you characterize the most recent round of funding?<span class="r">*</span></label>
-        <select id="fundStage"><option value="">선택</option><option>Pre-seed</option><option>Seed</option><option value="Series A">Series A</option><option value="Series B+">Series B or later</option></select></div>
-      <div class="fg hid" id="totalRaisedG"><label>Total amount raised to date<span class="r">*</span></label>
-        <input type="number" id="totalRaised" placeholder="USD"></div>
-      <div class="fg hid" id="investorsG"><label>Who are your investors?<span class="r">*</span></label>
+        <select id="raisedCapital" required><option value="">선택</option><option>Yes</option><option>No</option></select>
+        <div class="ht">💡 VC, 지인/가족, 액셀러레이터·인큐베이터로부터 받은 투자금을 모두 포함합니다.</div></div>
+      <div class="fg hid" id="fundDateG"><label>If YES, Date of most recent funding close<span class="r">*</span></label><input type="date" id="fundDate"></div>
+      <div class="fg" id="fundStageG"><label>How would you characterize the most recent round of funding that you closed?<span class="r">*</span></label>
+        <select id="fundStage"><option value="">선택</option><option>Bootstrapped</option><option>Pre-Seed</option><option>Seed</option><option value="Series A">Series A</option><option value="Series B">Series B</option><option value="Series C and beyond">Series C and beyond</option></select>
+        <div class="ht">💡 귀사에 해당하는 항목을 선택해주세요.</div></div>
+      <div class="fg" id="totalRaisedG"><label>Total amount raised to date<span class="r">*</span></label>
+        <input type="number" id="totalRaised" placeholder="USD">
+        <div class="ht">💡 USD 단위로 입력해주세요. 예: $1,000.00</div></div>
+      <div class="fg" id="investorsG"><label>Who are your investors?<span class="r">*</span></label>
         <textarea id="investors"></textarea>
-        <div class="ht">예: John Doe (Angel Ventures), Accel Partners</div></div>
+        <div class="ht">💡 투자자 이름과 소속 펀드를 쉼표로 구분해 나열해주세요. 주요 투자자를 먼저 작성해주세요. 예: John Doe (Angel Ventures)</div></div>
       <div class="fg"><label>Who are your advisors?<span class="r">*</span></label>
         <textarea id="advisors" required></textarea>
-        <div class="ht">없다면 "N/A"로 작성</div></div>
+        <div class="ht">💡 자문위원 이름과 소속을 쉼표로 구분해 나열해주세요. 주요 자문위원을 먼저 작성해주세요. 예: John Doe (Angel Ventures). 해당 없으면 N/A로 작성해주세요.</div></div>
       <div class="fg"><label>Is/was your startup part of any accelerator(s)/incubator(s)?<span class="r">*</span></label>
         <select id="accelerator" required><option value="">선택</option><option>Yes</option><option>No</option></select></div>
       <div class="fg hid" id="accG"><label>Which accelerator(s)/incubator(s)?<span class="r">*</span></label>
         <textarea id="accName"></textarea>
         <div class="tip"><strong>신한 스퀘어브릿지 소속 팀:</strong> "Shinhan Financial Group Hope Foundation / Shinhan Square Bridge(S²B)"로 작성해주세요.</div></div>
-      <div class="fg"><label>Do you plan to raise capital in the next year?<span class="r">*</span></label>
-        <select id="planRaise" required><option value="">선택</option><option>Yes</option><option>No</option></select></div>
     </div>
 
     <!-- S8 -->
@@ -229,47 +236,66 @@ select{appearance:none;background:var(--wh) url("data:image/svg+xml,%3Csvg xmlns
       <div class="sh">Section 8. Team Details</div>
       <div class="fg"><label>What experience/expertise makes your team unique to build your product?<span class="r">*</span></label>
         <textarea id="teamExp" required></textarea>
-        <div class="ht">관련 산업 지식, 기술 전문성, 창업 경험, 핵심 직함, 학력 등을 포함해주세요.</div></div>
+        <div class="ht">💡 관련 산업 지식, 기술 전문성, 창업 경험, 핵심 직함, 학력 등을 포함해주세요.</div></div>
       <div class="fg"><label>How many people are on your team?<span class="r">*</span></label>
-        <input type="number" id="teamSize" required min="1"><div class="ht">계약직·파트타임 포함</div></div>
+        <input type="number" id="teamSize" required min="1"><div class="ht">💡 계약직·파트타임 포함</div></div>
       <div class="fg"><label>How many founders does the company have?<span class="r">*</span></label>
-        <input type="number" id="founderCount" required min="1" max="3"><div class="ht">최대 3명까지 신청서에 기재 가능</div></div>
+        <input type="number" id="founderCount" required min="1" max="3"><div class="ht">💡 최대 3명까지 신청서에 기재 가능</div></div>
     </div>
 
     <!-- S9 -->
     <div class="sec">
-      <div class="sh">Section 9. Founder Profile (대표자)</div>
+      <div class="sh">Section 9. Founder Profile(s)</div>
       <p class="ht" style="margin-bottom:14px">대표자 1명의 정보를 입력해주세요. 공동창업자가 있다면 실제 신청 시 추가 입력란이 제공됩니다.</p>
       <div class="fg"><label>Full Name<span class="r">*</span></label><input type="text" id="founderName" required></div>
       <div class="fg"><label>Job Title<span class="r">*</span></label><input type="text" id="founderTitle" required placeholder="예: CEO, CTO"></div>
-      <div class="fg"><label>LinkedIn Profile URL<span class="r">*</span></label><input type="url" id="founderLI" required placeholder="https://linkedin.com/in/..."></div>
-      <div class="fg"><label>AngelList or Crunchbase Profile URL</label><input type="url" id="founderAL" placeholder="https://"></div>
+      <div class="fg"><label>LinkedIn Profile URL<span class="r">*</span></label><div class="url-note">ℹ️ 해당 질문은 본 시뮬레이션 평가 항목에는 포함되지 않으며, 실제 2026년 Startup Battlefield 신청서에서는 URL을 제출하는 방식으로 진행되니 참고해 주시기 바랍니다.</div></div>
+      <div class="fg"><label>AngelList or Crunchbase Profile URL</label><div class="url-note">ℹ️ 해당 질문은 본 시뮬레이션 평가 항목에는 포함되지 않으며, 실제 2026년 Startup Battlefield 신청서에서는 URL을 제출하는 방식으로 진행되니 참고해 주시기 바랍니다.</div></div>
+      <div class="fg"><label>Gender<span class="r">*</span></label>
+        <select id="founderGender" required>
+          <option value="">선택</option>
+          <option>Female</option>
+          <option>Gender Non-Conforming</option>
+          <option>Male</option>
+          <option>Non-Binary</option>
+          <option>Transgender Female</option>
+          <option>Transgender Male</option>
+          <option value="Prefer Not to Respond">Prefer Not to Respond</option>
+        </select></div>
+      <div class="fg"><label>Ethnic background<span class="r">*</span></label>
+        <select id="founderEthnicity" required>
+          <option value="">선택 (다중 선택은 실제 신청 시 가능)</option>
+          <option value="Black, African, or African-American">Black, African, or African-American</option>
+          <option value="Asian/Pacific Islander">Asian/Pacific Islander</option>
+          <option value="Hispanic/Latinx">Hispanic/Latinx</option>
+          <option value="Native/Indigenous American">Native/Indigenous American</option>
+          <option value="South/East Asian">South/East Asian</option>
+          <option value="Middle Eastern">Middle Eastern</option>
+          <option value="White/European">White/European</option>
+          <option value="Prefer not to answer">Prefer not to answer</option>
+        </select>
+        <div class="ht">💡 실제 신청서에서는 다중 선택 가능합니다.</div></div>
+      <div class="fg"><label>Does the founder identify as any of the following?<span class="r">*</span></label>
+        <select id="founderIdentity" required>
+          <option value="">선택 (다중 선택은 실제 신청 시 가능)</option>
+          <option value="Active Military">Active Military</option>
+          <option value="Military Veteran">Military Veteran</option>
+          <option value="Person with a disability">Person with a disability</option>
+          <option value="LGBTQ+">LGBTQ+</option>
+          <option value="Age 65+">Age 65+</option>
+          <option value="Age 17 or younger">Age 17 or younger</option>
+          <option value="None of the above">None of the above</option>
+        </select>
+        <div class="ht">💡 실제 신청서에서는 다중 선택 가능합니다. 선택 항목은 평가에 직접 영향을 주지 않으며, 다양성 통계 목적으로 수집됩니다.</div></div>
     </div>
 
     <!-- S10 -->
     <div class="sec">
       <div class="sh">Section 10. How'd you hear about Startup Battlefield?</div>
-      <div class="fg"><label>Nomination Source<span class="r">*</span></label>
-        <select id="nomSource" required>
-          <option value="">선택</option>
-          <option value="Accelerator/Incubator">Accelerator/Incubator</option>
-          <option value="Investor">Investor</option>
-          <option value="Friend">Friend/Colleague</option>
-          <option value="SB Alumni">Startup Battlefield Alumni</option>
-          <option value="TC Website">TechCrunch Website</option>
-          <option value="TC Team">TechCrunch Team</option>
-          <option value="Social Media">Social Media</option>
-          <option value="Other">Other</option>
-        </select></div>
-      <div class="fg hid" id="refOrgG"><label>What organization/company is the person who referred you with?<span class="r">*</span></label>
-        <input type="text" id="refOrg">
-        <div class="tip"><strong>신한 스퀘어브릿지 소속 팀:</strong> "Shinhan Financial Group Hope Foundation"으로 작성해주세요.</div></div>
-      <div class="fg hid" id="refPersonG"><label>Name of person that referred you<span class="r">*</span></label>
-        <input type="text" id="refPerson">
-        <div class="tip"><strong>신한 스퀘어브릿지 소속 팀:</strong> "Sukkun Sun"으로 작성해주세요.</div></div>
-      <div class="fg hid" id="refEmailG"><label>Email of person that referred you (if known)</label>
-        <input type="email" id="refEmail">
-        <div class="tip"><strong>신한 스퀘어브릿지 소속 팀:</strong> "global@s2bridge.com"으로 작성해주세요.</div></div>
+      <div style="background:#EFF6FF;border-left:4px solid var(--b);padding:14px 16px;border-radius:8px;font-size:14px;line-height:1.8">
+        📋 <strong>2026년 Startup Battlefield 신청서를 작성하기 전에 해당 섹션에 대한 답변을 미리 준비하세요.</strong><br>
+        신한금융희망재단 공식 추천 기업의 경우, 해당 항목에 대한 답변 내용은 별도로 개별 안내드릴 예정입니다.
+      </div>
     </div>
 
     <div class="sa"><button type="submit" class="btn-s">평가 시작하기</button></div>
@@ -301,7 +327,7 @@ select{appearance:none;background:var(--wh) url("data:image/svg+xml,%3Csvg xmlns
 </div>
 </div><!-- /wrap -->
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const WORKER='https://sb200-evaluator.june-27b.workers.dev';
 const SHEET='https://script.google.com/macros/s/AKfycbxuzNJeBu70Od_2rWFuFy8XBUwfUTI5BMrnkvHs-sPVEBbWmi86XRxbqKM5xs51IPVW6g/exec';
 
@@ -361,21 +387,10 @@ document.getElementById('technology').addEventListener('change',function(){
   tog('aiG',this.value==='AI & ML',false);
 });
 document.getElementById('raisedCapital').addEventListener('change',function(){
-  const y=this.value==='Yes';
-  ['fundDateG','fundStageG','totalRaisedG','investorsG'].forEach(id=>tog(id,y,true));
+  tog('fundDateG',this.value==='Yes',true);
 });
 document.getElementById('accelerator').addEventListener('change',function(){
   tog('accG',this.value==='Yes',true);
-});
-document.getElementById('nomSource').addEventListener('change',function(){
-  const v=this.value;
-  const acc=['Accelerator/Incubator','Investor','SB Alumni'].includes(v);
-  const hasOrg=['Accelerator/Incubator','Investor','SB Alumni'].includes(v);
-  const hasPerson=['Accelerator/Incubator','Friend','Investor','SB Alumni','TC Team'].includes(v);
-  const hasEmail=['Accelerator/Incubator','Friend','Investor','SB Alumni','TC Team'].includes(v);
-  tog('refOrgG',hasOrg,true);
-  tog('refPersonG',hasPerson,true);
-  tog('refEmailG',hasEmail,false);
 });
 
 // 폼 제출
@@ -385,14 +400,12 @@ document.getElementById('appForm').addEventListener('submit',async function(e){
   const fd={
     pocCompany:g('pocCompany'),pocFirst:g('pocFirst'),pocLast:g('pocLast'),
     pocPhone:g('pocPhone'),pocEmail:g('pocEmail'),ccEmail:g('ccEmail'),
-    companyName:g('companyName'),website:g('website'),pitchbookUrl:g('pitchbookUrl'),
-    incorporation:g('incorporation'),hqRegion:g('hqRegion'),country:g('country'),city:g('city'),
+    companyName:g('companyName'),incorporation:g('incorporation'),hqRegion:g('hqRegion'),country:g('country'),city:g('city'),
     stage:g('stage'),vp:g('vp'),problem:g('problem'),solution:g('solution'),
     diff:g('diff'),customer:g('customer'),useCase:g('useCase'),
-    patent:g('patent'),patentLink:g('patentLink'),gtm:g('gtm'),
+    patent:g('patent'),gtm:g('gtm'),
     newProduct:g('newProduct'),newProductDesc:g('newProductDesc'),
     technology:g('technology'),aiDetails:g('aiDetails'),
-    demoUrl:g('demoUrl'),founderUrl:g('founderUrl'),
     tam:g('tam'),tamLogic:g('tamLogic'),uniqueness:g('uniqueness'),
     competitors:g('competitors'),industry:g('industry'),
     kpi:g('kpi'),traction:g('traction'),customers:g('customers'),
@@ -400,11 +413,10 @@ document.getElementById('appForm').addEventListener('submit',async function(e){
     bizModel:g('bizModel'),hasRevenue:g('hasRevenue'),raisedCapital:g('raisedCapital'),
     fundDate:g('fundDate'),fundStage:g('fundStage'),totalRaised:g('totalRaised'),
     investors:g('investors'),advisors:g('advisors'),
-    accelerator:g('accelerator'),accName:g('accName'),planRaise:g('planRaise'),
+    accelerator:g('accelerator'),accName:g('accName'),
     teamExp:g('teamExp'),teamSize:g('teamSize'),founderCount:g('founderCount'),
     founderName:g('founderName'),founderTitle:g('founderTitle'),
-    founderLI:g('founderLI'),founderAL:g('founderAL'),
-    nomSource:g('nomSource'),refOrg:g('refOrg'),refPerson:g('refPerson'),refEmail:g('refEmail')
+    founderGender:g('founderGender'),founderEthnicity:g('founderEthnicity'),founderIdentity:g('founderIdentity')
   };
 
   document.getElementById('formWrap').style.display='none';
@@ -432,15 +444,4 @@ function showResult(r){
   document.getElementById('scoreItems').innerHTML=r.itemScores.map(i=>`
     <div class="si">
       <div class="sih"><span class="sit">${i.item}</span><span class="siv">${i.score}/${i.max}</span></div>
-      <div class="sir">${i.rationale}</div>
-      ${i.improvement?`<div class="sii">${i.improvement}</div>`:''}
-    </div>`).join('');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function printResult(){
-  window.print();
-}
-</script>
-</body>
-</html>
+      <div class="sir">$
