@@ -792,7 +792,7 @@ input[readonly] {
         <span class="field-hint tip">💡 2026년부터 공식 감점 명시: "We deprioritize companies who say they have no competitors."</span>
         <textarea id="competitors" rows="5" placeholder="글로벌 직접 경쟁사 + 간접 경쟁사를 구체적으로 명시." required></textarea>
         <div class="warn-box" id="competitor-warn">
-          ⚠️ <strong>감점 경고</strong>: "경쟁자 없음" 또는 이와 유사한 표현이 감지되었습니다. TechCrunch는 이를 시장 현실 인식 부족으로 판단합니다. 반드시 글로벌 경쟁사를 명시하세요.
+          ⚠️ <strong>감점 경고</strong>: "경쟁자 없음" 또는 이와 유사한 표현이 감지되었습니다. TechCrunch는 이를 시장 현실 인식 부족으로 판단합니다. 글로벌 경쟁사를 구체적으로 명시하시는 것을 권장합니다.
         </div>
       </div>
 
@@ -1373,7 +1373,7 @@ window.addEventListener("load", function () {
       return "s" + n;
     }
     function scoreLbl(n) {
-      return n !== null ? n + " / 5" : "정보 부족";
+      return n !== null ? n + " / 5" : "N/A";
     }
 
     /* 항목별 판단 근거 / 개선 사항 추출 */
@@ -1398,7 +1398,7 @@ window.addEventListener("load", function () {
     var sec8  = extractItemBlock("Team");
 
     var score3  = getScore("Problem|Why Now");
-    var score4  = getScore("Product Demo");
+    var score4  = null; /* Product Demo: URL 미평가 → N/A 고정 */
     var score5t = getScore("TAM");
     var score5c = getScore("Competition|경쟁");
     var score6  = getScore("Traction");
@@ -1437,12 +1437,13 @@ window.addEventListener("load", function () {
     html += '<div class="journalist-section">';
     html += '  <div class="journalist-strip">' + personSvg + '<div class="journalist-strip-text">' + journalistHtml + '</div></div>';
     html += '  <div class="reporter-wrap">';
-    /* Kate Park 고정 + 산업별 두 번째 기자 */
-    html += buildReporterCard("KP", "Kate Park", "Asian Startups · TechCrunch", ["한국 스타트업", "아시아 시장"], ["K-tech", "Seoul"], true);
-    /* 산업별 기자 */
+    /* 산업별 기자 배정 (Kate Park 고정 없음) */
     var industry = (fd.industry || "").toLowerCase();
-    var r2 = getSecondReporter(industry, fd.tech_type || "");
-    html += buildReporterCard(r2.initials, r2.name, r2.role, r2.match, r2.keywords, false);
+    var r1 = getPrimaryReporter(industry, fd.tech_type || "");
+    html += buildReporterCard(r1.initials, r1.name, r1.role, r1.match, r1.keywords, true);
+    if (r1.secondary) {
+      html += buildReporterCard(r1.secondary.initials, r1.secondary.name, r1.secondary.role, r1.secondary.match, r1.secondary.keywords, false);
+    }
     html += '  </div>';
     html += '</div>';
 
@@ -1458,7 +1459,7 @@ window.addEventListener("load", function () {
       fd.poc_cc ? sRow("CC Email", fd.poc_cc) : sRow("CC Email", "", "blank")
     ].join(""));
     s01body += evalBlock("reason", "SEC 01은 심사 평가 항목이 아니며 본 시뮬레이션 점수에 반영되지 않았습니다. TC 내부에서 신청서 접수 및 커뮤니케이션 담당자를 확인하기 위한 행정 정보입니다.");
-    s01body += evalBlock("improve", "POC는 신청 전 과정을 실시간으로 대응할 수 있는 담당자로 지정할 것. TC의 추가 자료 요청이나 인터뷰 연락에 24시간 내 회신이 권장된다. CC 이메일에는 공동 창업자나 PR 담당자를 추가해 중요 연락을 놓치는 리스크를 줄여라.");
+    s01body += evalBlock("improve", "POC는 신청 전 과정을 실시간으로 대응할 수 있는 담당자로 지정하시는 것을 권장합니다. TC의 추가 자료 요청이나 인터뷰 연락에 24시간 내 회신이 가능한 분으로 설정하시면 좋겠습니다. CC 이메일에 공동 창업자나 PR 담당자를 추가해두시면 중요 연락을 놓치는 리스크를 줄이는 데 도움이 됩니다.");
     html += detailSection("SEC 01", "Application Point of Contact", "평가 미반영", "na", "N/A", s01body);
 
     /* ── SEC 02 ── */
@@ -1474,7 +1475,7 @@ window.addEventListener("load", function () {
       ])
     ].join(""));
     s02body += evalBlock("reason", "Company Name·HQ 지역·설립일은 기자가 산업 분류 및 담당 기자 배정 시 참조하는 정보로 간접 반영됩니다. HQ Country/City는 시뮬레이터 고정값으로 자동 설정됩니다.");
-    s02body += evalBlock("improve", "Crunchbase/Pitchbook 프로필이 없다면 지금 만들어 최신 투자·팀·제품 정보를 기재하라. 웹사이트 URL은 영문 랜딩페이지가 있어야 하며 https:// 접속 속도를 반드시 점검할 것.");
+    s02body += evalBlock("improve", "Crunchbase/Pitchbook 프로필이 아직 없으시다면 최신 투자·팀·제품 정보를 담아 미리 만들어두시는 것을 권장합니다. 웹사이트 URL은 영문 랜딩페이지로 연결되어 있는지, https:// 접속 속도에 문제는 없는지 사전에 확인해 보시면 좋겠습니다.");
     html += detailSection("SEC 02", "Company Information", "평가 부분 반영", "ref", "참고", s02body);
 
     /* ── SEC 03 ── */
@@ -1516,8 +1517,8 @@ window.addEventListener("load", function () {
       sRow("Founder Intro Video URL (Max 1 min) *", fd.intro_url || "", "sim")
     ].join("");
     var s04body = submittedBlock(s04rows);
-    s04body += evalBlock("reason", (sec4.reason || "두 영상 URL은 시뮬레이션에서 미제출이므로 URL 자체는 평가에 반영되지 않았습니다. 텍스트 기반 내용을 기준으로 평가합니다."));
-    s04body += evalBlock("improve", (sec4.improve || "두 URL 모두 비밀번호 없이 접근 가능해야 함 (YouTube unlisted 권장). 2026 신청서는 Founder Intro Video로 변경됐다 — Intro 1분은 개인 스토리 중심으로 구성하라."));
+    s04body += evalBlock("reason", "영상 URL 입력 필드는 본 시뮬레이션에서 disabled 처리되어 있어 평가에 반영하지 않습니다. 실제 신청 시 Product Demo Video(최대 2분)와 Founder Intro Video(최대 1분) 두 영상은 모두 필수입니다.");
+    s04body += evalBlock("improve", (sec4.improve || "두 URL 모두 비밀번호 없이 접근 가능한 상태로 준비하시는 것을 권장합니다 (YouTube unlisted 방식을 추천합니다). 2026 신청서는 Founder Intro Video로 변경되었으니, 1분 영상은 피치보다 창업자 개인 스토리 중심으로 구성해 보시면 좋겠습니다."));
     html += detailSection("SEC 04", "Product & Founder Videos — Product Demo", "", scoreCls(score4), scoreLbl(score4), s04body);
 
     /* ── SEC 05 TAM ── */
@@ -1588,14 +1589,14 @@ window.addEventListener("load", function () {
     ].join("");
     var s08body = submittedBlock(s08rows);
     s08body += evalBlock("reason", (sec8.reason || "(평가 내용을 Worker 응답에서 불러옵니다)") + " Founder Count 및 창업자 개인 프로필은 시뮬레이션에서 미반영이며, 실제 신청서에서는 TC 다양성 통계(Diversity Stats) 집계에도 활용됩니다.");
-    s08body += evalBlock("improve", (sec8.improve || "(개선 사항을 Worker 응답에서 불러옵니다)") + " 실제 제출 시 각 창업자의 LinkedIn URL과 Founder Profile을 반드시 입력하고 LinkedIn 프로필을 최신 상태로 점검하라.");
+    s08body += evalBlock("improve", (sec8.improve || "(개선 사항을 Worker 응답에서 불러옵니다)") + " 실제 제출 시에는 각 창업자의 LinkedIn URL과 Founder Profile을 빠짐없이 입력하시고, LinkedIn 프로필이 최신 상태로 유지되고 있는지 미리 확인해 보시는 것을 권장합니다.");
     html += detailSection("SEC 08", "Team Details — Team", "", scoreCls(score8), scoreLbl(score8), s08body);
 
     /* ── SEC 09 ── */
     var s09rows = sRow("Nomination Source *", fd.referral || "Shinhan Square Bridge (S²B)", "auto");
     var s09body = submittedBlock(s09rows);
     s09body += evalBlock("reason", "SEC 09는 심사 평가 항목이 아니며 본 시뮬레이션 점수에 반영되지 않았습니다. Nomination Source는 신청 유입 경로 확인용 행정 정보입니다.");
-    s09body += evalBlock("improve", "2024년 BANF(Top 20 선정) 인사이트에 따르면 가속기·인큐베이터 + SB 동문 추천 채널이 선정율에 유의미한 영향을 미칩니다. S²B를 통한 공식 추천이 확정되면 해당 경로를 반드시 기재하고, 레퍼런스 담당자 정보(Sukkun Sun / global@s2bridge.com)를 사전에 준비해두세요.");
+    s09body += evalBlock("improve", "2024년 BANF(Top 20 선정) 인사이트에 따르면 가속기·인큐베이터 + SB 동문 추천 채널이 선정율에 유의미한 영향을 미치는 것으로 나타났습니다. S²B를 통한 공식 추천이 확정되면 해당 경로를 신청서에 기재해 두시는 것을 권장합니다. 레퍼런스 담당자 정보(Sukkun Sun / global@s2bridge.com)도 미리 준비해두시면 도움이 됩니다.");
     html += detailSection("SEC 09", "How'd you hear about Startup Battlefield?", "평가 미반영", "na", "N/A", s09body);
 
     /* ── 핵심 판단 요약 (마지막) ── */
@@ -1621,24 +1622,36 @@ window.addEventListener("load", function () {
   }
 
   /* 산업별 두 번째 기자 */
-  function getSecondReporter(industry, tech) {
+  function getPrimaryReporter(industry, tech) {
+    var t = tech.toLowerCase();
     if (industry.includes("security") || industry.includes("cyber")) {
-      return {initials:"ZW", name:"Zack Whittaker", role:"Security · TechCrunch", match:["Cybersecurity","Privacy"], keywords:["vulnerability","hacking"]};
+      return {initials:"ZW", name:"Zack Whittaker", role:"Security · TechCrunch", match:["Cybersecurity","Privacy"], keywords:["vulnerability","hacking"],
+        secondary:{initials:"LFB", name:"Lorenzo Franceschi-Bicchierai", role:"Security · TechCrunch", match:["Malware","Exploits"], keywords:["zero-day","privacy"]}};
     }
-    if (industry.includes("transport") || industry.includes("energy") || industry.includes("space") || industry.includes("climate")) {
-      return {initials:"SK", name:"Sean O'Kane", role:"Transportation/Energy · TechCrunch", match:["EV","Autonomous"], keywords:["climate","logistics"]};
+    if (industry.includes("transport") || industry.includes("logistics") || industry.includes("auto")) {
+      return {initials:"KK", name:"Kirsten Korosec", role:"Transportation · TechCrunch", match:["EV","Autonomous","Mobility"], keywords:["logistics","fleet"],
+        secondary:{initials:"SK", name:"Sean O'Kane", role:"Transportation/Energy · TechCrunch", match:["Climate","Energy"], keywords:["EV","grid"]}};
+    }
+    if (industry.includes("climate") || industry.includes("energy") || industry.includes("space") || industry.includes("hardware") || industry.includes("robot")) {
+      return {initials:"TDC", name:"Tim De Chant", role:"Science/Climate · TechCrunch", match:["Climate Tech","Deep Tech"], keywords:["CO2","energy","hardware"],
+        secondary:{initials:"AA", name:"Aria Alamalhodaei", role:"Space/Energy · TechCrunch", match:["Space","Energy"], keywords:["satellite","propulsion"]}};
     }
     if (industry.includes("health") || industry.includes("bio") || industry.includes("med")) {
       return {initials:"TDC", name:"Tim De Chant", role:"Science/Health · TechCrunch", match:["Biotech","Health"], keywords:["clinical","FDA"]};
     }
-    if (industry.includes("fintech") || industry.includes("finance") || industry.includes("saas") || industry.includes("enterprise")) {
-      return {initials:"AH", name:"Anna Heim", role:"SaaS/Fintech · TechCrunch", match:["B2B SaaS","Fintech"], keywords:["ARR","enterprise"]};
+    if (industry.includes("fintech") || industry.includes("finance") || industry.includes("saas") || industry.includes("enterprise") || industry.includes("b2b")) {
+      return {initials:"AH", name:"Anna Heim", role:"SaaS/Fintech · TechCrunch", match:["B2B SaaS","Fintech"], keywords:["ARR","NRR","LTV"],
+        secondary:{initials:"RI", name:"Ram Iyer", role:"Enterprise · TechCrunch", match:["Enterprise","B2B"], keywords:["SaaS","procurement"]}};
     }
-    if (industry.includes("consumer") || industry.includes("media") || industry.includes("social")) {
-      return {initials:"AM", name:"Aisha Malik", role:"Consumer/Social · TechCrunch", match:["Consumer AI","Social"], keywords:["apps","UGC"]};
+    if (industry.includes("consumer") || industry.includes("media") || industry.includes("social") || industry.includes("entertainment")) {
+      return {initials:"AM", name:"Amanda Silberling", role:"Consumer/Media · TechCrunch", match:["Consumer","Social","Media"], keywords:["UGC","streaming","culture"]};
     }
-    /* 기본: AI 담당 */
-    return {initials:"AM", name:"Aisha Malik", role:"AI / Consumer · TechCrunch", match:["Consumer AI"], keywords:["AI apps","real-world impact"]};
+    if (industry.includes("ai") || t.includes("artificial")) {
+      return {initials:"AIK", name:"Aisha Malik", role:"AI/Consumer · TechCrunch", match:["Consumer AI","AI Products"], keywords:["LLM","real-world impact"],
+        secondary:{initials:"IM", name:"Ivan Mehta", role:"AI · TechCrunch", match:["AI Tools","Generative AI"], keywords:["AI apps","startups"]}};
+    }
+    /* 기본: 한국·아시아 팀은 Kate Park */
+    return {initials:"KP", name:"Kate Park", role:"Asian Startups · TechCrunch", match:["한국 스타트업","아시아 B2B"], keywords:["K-tech","global expansion"]};
   }
 
   /* finding 카드 */
