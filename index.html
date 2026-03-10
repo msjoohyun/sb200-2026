@@ -1438,7 +1438,7 @@ window.addEventListener("load", function () {
     }
 
     /* ⑤ SEC 03 — Problem & Solution */
-    html += detailSection("SEC 03", "Problem & Solution / Why Now",
+    html += detailSection("SEC 03", "Problem & Solution / Why Now", "",
       scoreCls(s3.score), scoreLbl(s3.score),
       submittedBlock(
         sRow("Value Proposition", fd.val_prop) +
@@ -1452,7 +1452,7 @@ window.addEventListener("load", function () {
     );
 
     /* ⑥ SEC 04 — Product Demo */
-    html += detailSection("SEC 04", "Product Demo & Founder Intro Video",
+    html += detailSection("SEC 04", "Product Demo & Founder Intro Video", "",
       scoreCls(s4.score), scoreLbl(s4.score),
       submittedBlock(
         sRow("Demo Video URL", fd.demo_url || "미제출", fd.demo_url ? "normal" : "sim") +
@@ -1464,7 +1464,7 @@ window.addEventListener("load", function () {
     );
 
     /* ⑦ SEC 05 — TAM */
-    html += detailSection("SEC 05", "Market — TAM",
+    html += detailSection("SEC 05", "Market — TAM", "",
       scoreCls(s5t.score), scoreLbl(s5t.score),
       submittedBlock(
         sRow("TAM 설명 및 계산 근거", fd.tam_explanation) +
@@ -1476,7 +1476,7 @@ window.addEventListener("load", function () {
     );
 
     /* ⑧ SEC 05 — Competition */
-    html += detailSection("SEC 05", "Competition Analysis",
+    html += detailSection("SEC 05", "Competition Analysis", "",
       scoreCls(s5c.score), scoreLbl(s5c.score),
       submittedBlock(
         sRow("경쟁사", fd.competitors) +
@@ -1488,7 +1488,7 @@ window.addEventListener("load", function () {
     );
 
     /* ⑨ SEC 06 — Traction */
-    html += detailSection("SEC 06", "Traction",
+    html += detailSection("SEC 06", "Traction", "",
       scoreCls(s6.score), scoreLbl(s6.score),
       submittedBlock(
         sRow("핵심 KPI", fd.kpi) +
@@ -1502,7 +1502,7 @@ window.addEventListener("load", function () {
     );
 
     /* ⑩ SEC 07 — Business Model */
-    html += detailSection("SEC 07", "Business Model",
+    html += detailSection("SEC 07", "Business Model", "",
       scoreCls(s7.score), scoreLbl(s7.score),
       submittedBlock(
         sRow("수익 모델", fd.biz_model) +
@@ -1516,7 +1516,7 @@ window.addEventListener("load", function () {
     );
 
     /* ⑪ SEC 08 — Team */
-    html += detailSection("SEC 08", "Team",
+    html += detailSection("SEC 08", "Team", "",
       scoreCls(s8.score), scoreLbl(s8.score),
       submittedBlock(
         sRow("팀 전문성", fd.team_expertise) +
@@ -1594,7 +1594,7 @@ window.addEventListener("load", function () {
   document.getElementById("submit-btn").addEventListener("click", async function () {
     /* 필수 필드 간단 체크 */
     var required = ["poc_company","poc_first","poc_last","poc_phone","poc_email","co_name","co_website","co_incorp","val_prop","core_problem","core_solution","ideal_customer","use_case","distribution","tam_explanation","competitors","unique_protectable","kpi","traction_desc","press","newsworthy","biz_model","total_raised","team_expertise"];
-    var missing = required.filter(function(id){ return !document.getElementById(id) || !document.getElementById(id).value.trim(); });
+    var missing = required.filter(function(id){ var el = document.getElementById(id); return !el || !el.value || !el.value.trim(); });
     if (missing.length > 0) {
       var first = document.getElementById(missing[0]);
       if (first) first.scrollIntoView({behavior:"smooth", block:"center"});
