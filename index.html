@@ -1380,10 +1380,12 @@ window.addEventListener("load", function () {
     function extractItemBlock(heading) {
       var pattern = new RegExp(heading + "[\\s\\S]*?판단\\s*근거[^:：]*[:：]\\s*([\\s\\S]*?)(?=개선\\s*사항|$)");
       var m = evalText.match(pattern);
-      var reason = (m && m[1]) ? m[1].trim().split(/\n\n/)[0] : "(Worker 응답에서 추출 불가)";
+      var rval = m ? (m[1] || m[2] || m[3] || "") : "";
+      var reason = rval.trim() ? rval.trim().split(/\n\n/)[0] : "(Worker 응답에서 추출 불가)";
       pattern = new RegExp(heading + "[\\s\\S]*?개선\\s*사항[^:：]*[:：]\\s*([\\s\\S]*?)(?=\\.\\s*\n\n|\n\n[0-9]|$)");
       m = evalText.match(pattern);
-      var improve = (m && m[1]) ? m[1].trim().split(/\n\n/)[0] : "(Worker 응답에서 추출 불가)";
+      var ival = m ? (m[1] || m[2] || m[3] || "") : "";
+      var improve = ival.trim() ? ival.trim().split(/\n\n/)[0] : "(Worker 응답에서 추출 불가)";
       return { reason: reason, improve: improve };
     }
 
