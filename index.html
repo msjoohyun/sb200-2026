@@ -242,7 +242,7 @@ select {
 .btn-run:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 /* ── Result ── */
 #result-panel {
-  display: none; margin-top: 24px; background: var(--surface);
+  display: none; background: var(--surface);
   border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-card);
 }
 .result-header {
@@ -939,25 +939,25 @@ select {
       </div>
     </div>
 
-    <!-- Result -->
-    <div id="result-panel">
-      <div class="result-header">
-        <div class="result-title">📊 시뮬레이션 분석 결과</div>
-        <div class="result-meta">Claude Sonnet 4.6 · 2024–2025 실제 데이터 참조</div>
-      </div>
-      <div class="result-body">
-        <div class="loading-wrap" id="result-loading">
-          <div class="spinner"></div>
-          <div>
-            <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">신청서를 분석하는 중입니다</div>
-            <div style="font-size:13px;color:var(--text-muted)">AI가 2024–2025 실제 데이터를 기반으로 평가 중입니다. 잠시만 기다려 주세요...</div>
-          </div>
-        </div>
-        <div id="result-text" style="display:none"></div>
-      </div>
-    </div>
-
   </form>
+
+  <!-- Result (form 밖) -->
+  <div id="result-panel" style="display:none">
+    <div class="result-header">
+      <div class="result-title">📊 시뮬레이션 분석 결과</div>
+      <div class="result-meta">Claude Sonnet 4.6 · 2024–2025 실제 데이터 참조</div>
+    </div>
+    <div class="result-body">
+      <div class="loading-wrap" id="result-loading">
+        <div class="spinner"></div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">신청서를 분석하는 중입니다</div>
+          <div style="font-size:13px;color:var(--text-muted)">AI가 2024–2025 실제 데이터를 기반으로 평가 중입니다. 잠시만 기다려 주세요...</div>
+        </div>
+      </div>
+      <div id="result-text" style="display:none"></div>
+    </div>
+  </div>
 
   <div class="submit-bar">
     <div class="submit-bar-info" style="line-height:1.7">
@@ -1114,7 +1114,7 @@ async function submitForm(){
   const form = document.getElementById('sb-form');
   const submitBar = document.querySelector('.submit-bar');
 
-  // 폼·제출바 즉시 숨기고 처리 중 화면 표시
+  // 폼 내용·제출바 즉시 숨기고 처리 중 화면 표시
   form.style.display = 'none';
   if (submitBar) submitBar.style.display = 'none';
   panel.style.display = 'block';
