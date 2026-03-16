@@ -1104,6 +1104,8 @@ async function submitForm(){
   const panel = document.getElementById('result-panel');
   const loading = document.getElementById('result-loading');
   const result = document.getElementById('result-text');
+  const form = document.getElementById('sb-form');
+  const submitBar = document.querySelector('.submit-bar');
 
   panel.style.display = 'block';
   setTimeout(() => panel.scrollIntoView({behavior:'smooth', block:'start'}), 100);
@@ -1133,6 +1135,11 @@ async function submitForm(){
     loading.style.display = 'none';
     result.style.display = 'block';
     renderResult(result, json, data);
+
+    // 폼·제출바 숨기고 결과 화면 상단으로 이동
+    form.style.display = 'none';
+    if (submitBar) submitBar.style.display = 'none';
+    window.scrollTo({top: 0, behavior: 'smooth'});
 
   } catch(err) {
     loading.style.display = 'none';
