@@ -1144,20 +1144,20 @@ async function submitForm(){
 
     loading.style.display = 'none';
     result.style.display = 'block';
+    console.log('API 응답 JSON:', JSON.stringify(json).substring(0, 200));
     renderResult(result, json, data);
     window.scrollTo({top: 0, behavior: 'smooth'});
 
   } catch(err) {
     loading.style.display = 'none';
     result.style.display = 'block';
-    result.innerHTML = `<div style="color:#e11d48;padding:12px;background:#fff1f2;border-radius:8px;border:1px solid #fecdd3">
-      <strong>오류가 발생했습니다</strong><br>${err.message}<br><br>
-      <span style="font-size:12px;color:#6b7280">잠시 후 다시 시도해 주세요.</span>
+    result.innerHTML = `<div style="color:#e11d48;padding:20px;background:#fff1f2;border-radius:8px;border:1px solid #fecdd3;text-align:center">
+      <div style="font-size:15px;font-weight:700;margin-bottom:8px">오류가 발생했습니다</div>
+      <div style="font-size:13px;margin-bottom:12px">${err.message}</div>
+      <button onclick="location.reload()" style="padding:8px 20px;background:#0055FF;color:#fff;border:none;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">처음부터 다시 시도</button>
     </div>`;
+    console.error('submitForm error:', err);
   }
-
-  btn.disabled = false;
-  btn.textContent = '시뮬레이션 실행 →';
 }
 
 function renderResult(container, r, d) {
