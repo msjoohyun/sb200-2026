@@ -296,6 +296,7 @@ select {
 
 <div class="page-wrap">
 
+<div id="form-area">
   <div class="hero">
     <div class="hero-badge">
       <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#fff" opacity="0.5"/><circle cx="4" cy="4" r="1.5" fill="#fff"/></svg>
@@ -941,24 +942,6 @@ select {
 
   </form>
 
-  <!-- Result (form 밖) -->
-  <div id="result-panel" style="display:none">
-    <div class="result-header">
-      <div class="result-title">📊 시뮬레이션 분석 결과</div>
-      <div class="result-meta">Claude Sonnet 4.6 · 2024–2025 실제 데이터 참조</div>
-    </div>
-    <div class="result-body">
-      <div class="loading-wrap" id="result-loading">
-        <div class="spinner"></div>
-        <div>
-          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">신청서를 분석하는 중입니다</div>
-          <div style="font-size:13px;color:var(--text-muted)">AI가 2024–2025 실제 데이터를 기반으로 평가 중입니다. 잠시만 기다려 주세요...</div>
-        </div>
-      </div>
-      <div id="result-text" style="display:none"></div>
-    </div>
-  </div>
-
   <div class="submit-bar">
     <div class="submit-bar-info" style="line-height:1.7">
       <strong>⚠️ 실행 전 유의사항</strong><br>
@@ -971,10 +954,30 @@ select {
     <button type="button" class="btn-run" onclick="submitForm()" id="submit-btn">시뮬레이션 실행 →</button>
   </div>
 
+</div><!-- /page-wrap -->
+</div><!-- /form-area -->
+
+<!-- Result area (form-area 완전 밖) -->
+<div id="result-panel" style="display:none">
+  <div class="page-wrap" style="padding-top:24px">
+    <div class="result-header" style="border-radius:12px 12px 0 0">
+      <div class="result-title">📊 시뮬레이션 분석 결과</div>
+      <div class="result-meta">Claude Sonnet 4.6 · 2024–2025 실제 데이터 참조</div>
+    </div>
+    <div class="result-body" style="border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;background:#fff">
+      <div class="loading-wrap" id="result-loading">
+        <div class="spinner"></div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">신청서를 분석하는 중입니다</div>
+          <div style="font-size:13px;color:var(--text-muted)">AI가 2024–2025 실제 데이터를 기반으로 평가 중입니다. 잠시만 기다려 주세요...</div>
+        </div>
+      </div>
+      <div id="result-text" style="display:none"></div>
+    </div>
+  </div>
 </div>
 
-<script>
-function R(el,name){
+<script>function R(el,name){
   el.closest('.radio-group').querySelectorAll('.radio-item').forEach(i=>i.classList.remove('selected'));
   el.classList.add('selected');
   el.querySelector('input').checked=true;
@@ -1111,7 +1114,7 @@ async function submitForm(){
   const panel = document.getElementById('result-panel');
   const loading = document.getElementById('result-loading');
   const result = document.getElementById('result-text');
-  const form = document.getElementById('sb-form');
+  const form = document.getElementById('form-area');
   const submitBar = document.querySelector('.submit-bar');
 
   // 폼 내용·제출바 즉시 숨기고 처리 중 화면 표시
